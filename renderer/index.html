@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src wss://generativelanguage.googleapis.com;" />
+  <title>MeetingMind</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════
+       SETTINGS OVERLAY  (shown when no API key)
+  ══════════════════════════════════════════════ -->
+  <div id="settings-overlay" class="overlay hidden">
+    <div class="overlay-card">
+      <div class="overlay-logo">
+        <span class="logo-dot"></span>
+        <span class="overlay-title">MeetingMind</span>
+      </div>
+      <p class="overlay-subtitle">Enter your Google Gemini API key to get started.<br/>It is encrypted and stored locally.</p>
+      <input id="api-key-input"
+             type="password"
+             class="api-input"
+             placeholder="AIza…"
+             autocomplete="off"
+             spellcheck="false" />
+      <div class="overlay-error hidden" id="api-key-error">Please enter a valid Gemini API key</div>
+      <button id="save-key-btn" class="btn btn-primary">Save &amp; Launch</button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SETTINGS PANEL (in-app gear overlay)
+  ══════════════════════════════════════════════ -->
+  <div id="gear-overlay" class="overlay hidden">
+    <div class="overlay-card">
+      <div class="overlay-header-row">
+        <span class="overlay-title">Settings</span>
+        <button id="close-gear-btn" class="icon-btn" title="Close">✕</button>
+      </div>
+      <p class="overlay-subtitle">Update your Google Gemini API key</p>
+      <input id="gear-api-input"
+             type="password"
+             class="api-input"
+             placeholder="AIza…"
+             autocomplete="off"
+             spellcheck="false" />
+      <div class="overlay-error hidden" id="gear-key-error">Please enter a valid Gemini API key</div>
+      <button id="gear-save-btn" class="btn btn-primary">Update Key</button>
+      <div class="key-status" id="key-status-label"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       MAIN HUD PANEL
+  ══════════════════════════════════════════════ -->
+  <div id="hud" class="hud hidden">
+
+    <!-- ── Header ─────────────────────────────────── -->
+    <div id="hud-header" class="hud-header drag-zone">
+      <div class="header-left no-drag">
+        <span id="status-dot" class="status-dot idle"></span>
+        <span class="app-label">MeetingMind</span>
+        <span id="connection-label" class="connection-label">⚫ Disconnected</span>
+      </div>
+      <div class="header-right no-drag">
+        <button id="gear-btn" class="icon-btn" title="Settings">⚙</button>
+        <button id="minimize-btn" class="icon-btn" title="Minimize">−</button>
+      </div>
+    </div>
+
+    <!-- ── Transcript box ─────────────────────────── -->
+    <div class="section-label">Live Transcript</div>
+    <div id="transcript-box" class="transcript-box">
+      <div id="transcript-content" class="transcript-content">
+        <span id="final-text" class="final-text"></span><span id="interim-text" class="interim-text"></span>
+      </div>
+    </div>
+
+    <!-- ── Action Items ───────────────────────────── -->
+    <div class="section-label">Action Items</div>
+    <ul id="action-list" class="action-list">
+      <li class="placeholder-item">AI action items will appear here…</li>
+    </ul>
+
+    <!-- ── Summary ────────────────────────────────── -->
+    <div class="section-label">Summary <span id="ai-spinner" class="ai-spinner hidden">●</span></div>
+    <div id="summary-box" class="summary-box">
+      <span id="summary-text" class="summary-text placeholder">Streaming summary will appear here…</span>
+    </div>
+
+    <!-- ── Decisions ──────────────────────────────── -->
+    <div class="section-label">Decisions</div>
+    <ul id="decision-list" class="action-list">
+      <li class="placeholder-item">Decisions will appear here…</li>
+    </ul>
+
+    <!-- ── Controls ───────────────────────────────── -->
+    <div class="controls no-drag">
+      <button id="start-btn"  class="btn btn-start">▶ Start</button>
+      <button id="update-btn" class="btn btn-update" disabled>⚡ Update</button>
+      <button id="clear-btn"  class="btn btn-ghost">⊘ Clear</button>
+      <button id="copy-btn"   class="btn btn-ghost">⎘ Copy</button>
+    </div>
+
+    <!-- ── Opacity slider ─────────────────────────── -->
+    <div class="opacity-row no-drag">
+      <label class="opacity-label" for="opacity-slider">Opacity</label>
+      <input id="opacity-slider"
+             type="range" min="30" max="95" value="75"
+             class="opacity-slider" />
+      <span id="opacity-val" class="opacity-val">75%</span>
+    </div>
+
+  </div><!-- /#hud -->
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

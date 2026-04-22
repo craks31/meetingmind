@@ -1,0 +1,32 @@
+# Dependency directories
+node_modules/
+
+# Build artifacts
+dist/
+build/
+out/
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# OS specifics
+.DS_Store
+Thumbs.db
+Icon?
+ehthumbs.db
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Project specific
+.env
+*.enc
+# Ignore local user data if created during development
+user-data/
+temp/
