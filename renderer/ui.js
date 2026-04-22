@@ -41,6 +41,7 @@ const els = {
 
   gearBtn:         document.getElementById('gear-btn'),
   minimizeBtn:     document.getElementById('minimize-btn'),
+  closeBtn:        document.getElementById('close-btn'),
 };
 
 /** Expose element refs for direct event wiring in the orchestrator */

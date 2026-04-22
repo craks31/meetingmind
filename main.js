@@ -53,7 +53,7 @@ function createWindow() {
     alwaysOnTop: true,
     hasShadow:   false,
     resizable:   true,
-    skipTaskbar: false,
+    skipTaskbar: true,
     webPreferences: {
       preload:          path.join(__dirname, 'preload.js'),
       contextIsolation: true,
@@ -85,10 +85,15 @@ app.whenReady().then(() => {
   // Allow microphone access in Electron >= 22+
   app.commandLine.appendSwitch('enable-features', 'AudioServiceOutOfProcess');
 
+  // macOS: hide from dock so the app is invisible in the dock bar
+  if (process.platform === 'darwin' && app.dock) {
+    app.dock.hide();
+  }
+
   createWindow();
 
-  // Ctrl+Shift+M  →  toggle visibility
-  globalShortcut.register('CommandOrControl+Shift+M', () => {
+  // Ctrl+Shift+F2  →  toggle visibility
+  globalShortcut.register('CommandOrControl+Shift+F2', () => {
     if (!win) return;
     if (win.isVisible()) {
       win.hide();
@@ -128,7 +133,7 @@ ipcMain.handle('get-api-key', () => {
 });
 
 ipcMain.handle('minimize-window', () => {
-  win?.minimize();
+  win?.hide();
 });
 
 ipcMain.handle('close-window', () => {

@@ -108,6 +108,7 @@ function wireEventListeners() {
 
   // ── Window controls ──
   els.minimizeBtn.addEventListener('click', () => window.electronAPI.minimizeWindow());
+  els.closeBtn.addEventListener('click', () => window.electronAPI.closeWindow());
 
   // ── Recording ──
   els.startBtn.addEventListener('click', toggleRecording);

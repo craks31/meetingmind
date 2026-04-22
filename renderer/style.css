@@ -3,7 +3,7 @@
    ════════════════════════════════════════════════════════ */
 
 /* ── Reset & base ──────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; cursor: default !important; }
 
 :root {
   --font: 'Inter', system-ui, sans-serif;
@@ -53,7 +53,7 @@ html, body {
 .hidden { display: none !important; }
 
 /* Drag zones */
-.drag-zone    { -webkit-app-region: drag; }
+.drag-zone    { -webkit-app-region: drag; cursor: default !important; }
 .no-drag      { -webkit-app-region: no-drag; }
 
 /* ════════════════════════════════════════════════════════
@@ -214,6 +214,7 @@ html, body {
   transition: background 0.15s, color 0.15s;
 }
 .icon-btn:hover { background: rgba(255,255,255,0.10); color: var(--text-primary); }
+.close-btn:hover { background: rgba(255, 77, 109, 0.25); color: var(--accent-red); }
 
 /* ════════════════════════════════════════════════════════
    HUD PANEL
@@ -422,10 +423,12 @@ html, body {
   border-radius: 50%;
   background: var(--accent-teal);
   box-shadow: 0 0 6px rgba(0, 212, 200, 0.6);
-  cursor: pointer;
+  cursor: default !important;
   transition: transform 0.15s;
 }
-.opacity-slider::-webkit-slider-thumb:hover { transform: scale(1.2); }
+.opacity-slider::-webkit-slider-thumb:hover { transform: scale(1.2); cursor: default !important; }
+.opacity-slider::-webkit-slider-thumb:active { cursor: default !important; }
+.opacity-slider:active { cursor: default !important; }
 
 /* ── Animations ───────────────────────────────────────── */
 @keyframes fadeIn {
